@@ -2,6 +2,7 @@ package com.backend.productprices.application.productprice.search;
 
 import com.backend.productprices.application.productprice.search.dto.ProductPriceDTO;
 import com.backend.productprices.application.productprice.search.dto.ProductPriceSearchCriteriaDTO;
+import com.backend.productprices.application.productprice.search.shared.message.KeyMessageSource;
 import com.backend.productprices.domain.productprice.entity.ProductPriceSearchCriteria;
 import com.backend.productprices.domain.productprice.exception.ResourceNotFoundException;
 import com.backend.productprices.domain.productprice.repository.SearchProductPriceRepository;
@@ -18,7 +19,8 @@ final class SearchProductPriceImpl implements SearchProductPrice {
     @Override
     public ProductPriceDTO searchProductPrice(ProductPriceSearchCriteriaDTO criteriaDTO) {
         final var criteria = new ProductPriceSearchCriteria(criteriaDTO.getProductId(), criteriaDTO.getBrandId(), criteriaDTO.getDate());
-        final var productPrice = searchProductPriceRepository.getByCriteria(criteria).orElseThrow(() -> new ResourceNotFoundException("Price not found"));
+        final var productPrice = searchProductPriceRepository.getByCriteria(criteria)
+                .orElseThrow(() -> new ResourceNotFoundException(KeyMessageSource.APPLICATION_PRICE_NOT_FOUND));
         return GetProductPriceDTO.toDTO(productPrice);
     }
 }
