@@ -9,6 +9,7 @@ import com.backend.productprices.domain.productprice.entity.Pricing;
 import com.backend.productprices.domain.productprice.entity.PricingPeriod;
 import com.backend.productprices.domain.productprice.entity.Product;
 import com.backend.productprices.domain.productprice.entity.ProductPrice;
+import com.backend.productprices.infrastructure.persistence.model.productprice.ProductPricePO;
 
 import java.time.LocalDateTime;
 
@@ -39,5 +40,18 @@ public class ProductPriceUtils {
         productPriceDTO.setPrice(new PriceDTO(PRICE_AMOUNT, PRICE_CURRENCY.getCode()));
         productPriceDTO.setPricingPeriod(new PricingPeriodDTO(START_DATE, END_DATE));
         return productPriceDTO;
+    }
+
+    public static ProductPricePO getDefaultPersistence() {
+        final var productPricePO = new ProductPricePO();
+        productPricePO.setProductId(PRODUCT_ID);
+        productPricePO.setBrandId(BRAND_ID);
+        productPricePO.setPriceListId(PRICE_LIST_ID);
+        productPricePO.setPrice(PRICE_AMOUNT);
+        productPricePO.setCurrency(PRICE_CURRENCY.getCode());
+        productPricePO.setStartDate(START_DATE);
+        productPricePO.setEndDate(END_DATE);
+        productPricePO.setPriority(PRIORITY);
+        return productPricePO;
     }
 }

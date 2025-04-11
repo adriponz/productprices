@@ -12,4 +12,14 @@ public enum Currency {
     public String getCode() {
         return code;
     }
+
+    public static Currency of(String code) {
+        if (code != null) {
+            for (Currency type : Currency.values()) {
+                if (type.code.equals(code))
+                    return type;
+            }
+        }
+        return null;
+    }
 }
