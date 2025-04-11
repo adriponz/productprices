@@ -1,4 +1,4 @@
-package com.backend.productprices.domain.product.entity;
+package com.backend.productprices.domain.productprice.entity;
 
 public enum Currency {
     EURO("EUR");
@@ -7,5 +7,9 @@ public enum Currency {
 
     Currency(String code) {
         this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

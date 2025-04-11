@@ -1,4 +1,4 @@
-package com.backend.productprices.domain.product.entity;
+package com.backend.productprices.domain.productprice.entity;
 
 import java.time.LocalDateTime;
 

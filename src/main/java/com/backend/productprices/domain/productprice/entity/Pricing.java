@@ -1,4 +1,4 @@
-package com.backend.productprices.domain.product.entity;
+package com.backend.productprices.domain.productprice.entity;
 
 public record Pricing(Integer id, PricingPeriod period, Integer priority) {
 }
