@@ -28,7 +28,7 @@ class QueryProductPriceControllerTest {
     @ParameterizedTest
     @DisplayName("GET /prices: returns 200 OK and a Price")
     @MethodSource("provideCriteriaAndExpectedResult")
-    void getPrices_validCriteria_returnsValidResponseEntity(Integer productId, Integer brandId, LocalDateTime date, Integer expectedPriceListId) {
+    void getPrices_validCriteria_returnsValidResponseEntity(Long productId, Long brandId, LocalDateTime date, Long expectedPriceListId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
         String url = String.format("http://localhost:%s/api/prices?productId=%s&brandId=%s&date=%s",
@@ -43,11 +43,11 @@ class QueryProductPriceControllerTest {
 
     private static Stream<Arguments> provideCriteriaAndExpectedResult() {
         return Stream.of(
-                Arguments.of(35455, 1, LocalDateTime.of(2020, 6, 14, 10, 0), 1),
-                Arguments.of(35455, 1, LocalDateTime.of(2020, 6, 14, 16, 0), 2),
-                Arguments.of(35455, 1, LocalDateTime.of(2020, 6, 14, 21, 0), 1),
-                Arguments.of(35455, 1, LocalDateTime.of(2020, 6, 15, 10, 0), 3),
-                Arguments.of(35455, 1, LocalDateTime.of(2020, 6, 16, 21, 0), 4)
+                Arguments.of(35455L, 1L, LocalDateTime.of(2020, 6, 14, 10, 0), 1L),
+                Arguments.of(35455L, 1L, LocalDateTime.of(2020, 6, 14, 16, 0), 2L),
+                Arguments.of(35455L, 1L, LocalDateTime.of(2020, 6, 14, 21, 0), 1L),
+                Arguments.of(35455L, 1L, LocalDateTime.of(2020, 6, 15, 10, 0), 3L),
+                Arguments.of(35455L, 1L, LocalDateTime.of(2020, 6, 16, 21, 0), 4L)
         );
     }
 }

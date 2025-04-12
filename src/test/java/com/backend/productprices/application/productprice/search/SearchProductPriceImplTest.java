@@ -27,8 +27,8 @@ class SearchProductPriceImplTest {
     @Test
     void should_throwError_when_productPriceNotExist() {
         final var criteriaDTO = new ProductPriceSearchCriteriaDTO();
-        criteriaDTO.setProductId(1);
-        criteriaDTO.setBrandId(1);
+        criteriaDTO.setProductId(1L);
+        criteriaDTO.setBrandId(1L);
         criteriaDTO.setDate(LocalDateTime.now());
         final var criteria = new ProductPriceSearchCriteria(criteriaDTO.getProductId(), criteriaDTO.getBrandId(), criteriaDTO.getDate());
         BDDMockito.given(searchProductPriceRepository.getByCriteria(criteria)).willReturn(Optional.empty());

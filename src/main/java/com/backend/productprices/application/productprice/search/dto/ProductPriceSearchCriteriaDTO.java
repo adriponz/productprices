@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ProductPriceSearchCriteriaDTO {
-    private Integer productId;
-    private Integer brandId;
+    private Long productId;
+    private Long brandId;
     private LocalDateTime date;
 }

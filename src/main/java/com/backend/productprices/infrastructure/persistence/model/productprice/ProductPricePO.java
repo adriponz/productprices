@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class ProductPricePO {
-    private Integer productId;
-    private Integer brandId;
+    private Long productId;
+    private Long brandId;
     private Double price;
     private String currency;
-    private Integer priceListId;
+    private Long priceListId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private Integer priority;

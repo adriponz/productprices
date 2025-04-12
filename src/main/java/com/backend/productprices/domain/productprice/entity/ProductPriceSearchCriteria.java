@@ -5,7 +5,7 @@ import com.backend.productprices.domain.productprice.exception.DomainException;
 
 import java.time.LocalDateTime;
 
-public record ProductPriceSearchCriteria(Integer productId, Integer brandId, LocalDateTime date) {
+public record ProductPriceSearchCriteria(Long productId, Long brandId, LocalDateTime date) {
     public ProductPriceSearchCriteria {
         if (productId == null) {
             throw new DomainException(KeyMessageSource.DOMAIN_PRODUCT_ID_IS_REQUIRED);

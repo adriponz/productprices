@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class ProductPriceDTO {
-    private Integer productId;
-    private Integer brandId;
+    private Long productId;
+    private Long brandId;
     private PriceDTO price;
-    private Integer priceListId;
+    private Long priceListId;
     private PricingPeriodDTO pricingPeriod;
 
 }

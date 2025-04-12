@@ -18,7 +18,7 @@ class ProductPriceSearchCriteriaTest {
 
     @Test
     void should_throwError_when_brandIdIsNull() {
-        final var id = 1;
+        final var id = 1L;
         final var expectedThrow = Assertions.catchThrowable(() -> new ProductPriceSearchCriteria(id, null, null));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(DomainException.class)
@@ -27,7 +27,7 @@ class ProductPriceSearchCriteriaTest {
 
     @Test
     void should_throwError_when_dateIsInvalid() {
-        final var id = 1;
+        final var id = 1L;
         final var expectedThrow = Assertions.catchThrowable(() -> new ProductPriceSearchCriteria(id, id, null));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(DomainException.class)
@@ -36,8 +36,8 @@ class ProductPriceSearchCriteriaTest {
 
     @Test
     void should_createTweet() {
-        final var productId = 1;
-        final var brandId = 2;
+        final var productId = 1L;
+        final var brandId = 2L;
         final var date = LocalDateTime.now();
         final var criteria = new ProductPriceSearchCriteria(productId, brandId, date);
 

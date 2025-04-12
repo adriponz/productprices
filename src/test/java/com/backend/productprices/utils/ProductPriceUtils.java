@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 
 public class ProductPriceUtils {
 
-    private static final Integer PRODUCT_ID = 1;
-    private static final Integer BRAND_ID = 1;
-    private static final Integer PRICE_LIST_ID = 1;
+    private static final Long PRODUCT_ID = 1L;
+    private static final Long BRAND_ID = 1L;
+    private static final Long PRICE_LIST_ID = 1L;
     private static final Double PRICE_AMOUNT = 1.2D;
     private static final Currency PRICE_CURRENCY = Currency.EURO;
     private static final Integer PRIORITY = 1;
