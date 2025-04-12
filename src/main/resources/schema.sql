@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS prices;
+
 CREATE TABLE prices (
     product_id INT NOT NULL,
     brand_id INT NOT NULL,
