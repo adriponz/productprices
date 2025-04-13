@@ -1,7 +1,7 @@
 package com.backend.productprices.application.productprice.search;
 
 import com.backend.productprices.application.productprice.search.dto.ProductPriceSearchCriteriaDTO;
-import com.backend.productprices.application.productprice.search.shared.message.KeyMessageSource;
+import com.backend.productprices.shared.message.KeyMessageSource;
 import com.backend.productprices.domain.productprice.entity.ProductPriceSearchCriteria;
 import com.backend.productprices.domain.productprice.exception.ResourceNotFoundException;
 import com.backend.productprices.domain.productprice.repository.SearchProductPriceRepository;
@@ -36,7 +36,7 @@ class SearchProductPriceImplTest {
         final var expectedThrow = Assertions.catchThrowable(() -> searchProductPrices.searchProductPrice(criteriaDTO));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage(KeyMessageSource.APPLICATION_PRICE_NOT_FOUND);
+                .hasMessage(KeyMessageSource.PRICE_NOT_FOUND);
     }
 
     @Test

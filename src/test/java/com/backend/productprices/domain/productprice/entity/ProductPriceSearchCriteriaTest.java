@@ -1,6 +1,6 @@
 package com.backend.productprices.domain.productprice.entity;
 
-import com.backend.productprices.application.productprice.search.shared.message.KeyMessageSource;
+import com.backend.productprices.shared.message.KeyMessageSource;
 import com.backend.productprices.domain.productprice.exception.DomainException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ class ProductPriceSearchCriteriaTest {
         final var expectedThrow = Assertions.catchThrowable(() -> new ProductPriceSearchCriteria(null, null, null));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(DomainException.class)
-                .hasMessage(KeyMessageSource.DOMAIN_PRODUCT_ID_IS_REQUIRED);
+                .hasMessage(KeyMessageSource.PRODUCT_ID_IS_REQUIRED);
     }
 
     @Test
@@ -22,7 +22,7 @@ class ProductPriceSearchCriteriaTest {
         final var expectedThrow = Assertions.catchThrowable(() -> new ProductPriceSearchCriteria(id, null, null));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(DomainException.class)
-                .hasMessage(KeyMessageSource.DOMAIN_BRAND_ID_IS_REQUIRED);
+                .hasMessage(KeyMessageSource.BRAND_ID_IS_REQUIRED);
     }
 
     @Test
@@ -31,7 +31,7 @@ class ProductPriceSearchCriteriaTest {
         final var expectedThrow = Assertions.catchThrowable(() -> new ProductPriceSearchCriteria(id, id, null));
 
         Assertions.assertThat(expectedThrow).isInstanceOf(DomainException.class)
-                .hasMessage(KeyMessageSource.DOMAIN_DATE_IS_REQUIRED);
+                .hasMessage(KeyMessageSource.DATE_IS_REQUIRED);
     }
 
     @Test
