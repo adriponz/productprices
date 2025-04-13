@@ -1,15 +1,15 @@
 package com.backend.productprices.utils;
 
-import com.backend.productprices.application.productprice.search.dto.PriceDTO;
-import com.backend.productprices.application.productprice.search.dto.PricingPeriodDTO;
-import com.backend.productprices.application.productprice.search.dto.ProductPriceDTO;
-import com.backend.productprices.domain.productprice.entity.Currency;
-import com.backend.productprices.domain.productprice.entity.Price;
-import com.backend.productprices.domain.productprice.entity.Pricing;
-import com.backend.productprices.domain.productprice.entity.PricingPeriod;
-import com.backend.productprices.domain.productprice.entity.Product;
-import com.backend.productprices.domain.productprice.entity.ProductPrice;
-import com.backend.productprices.infrastructure.persistence.model.productprice.ProductPricePO;
+import com.backend.productprices.application.search.dto.PriceDTO;
+import com.backend.productprices.application.search.dto.PricingPeriodDTO;
+import com.backend.productprices.application.search.dto.ProductPriceDTO;
+import com.backend.productprices.domain.entity.Currency;
+import com.backend.productprices.domain.entity.Price;
+import com.backend.productprices.domain.entity.Pricing;
+import com.backend.productprices.domain.entity.PricingPeriod;
+import com.backend.productprices.domain.entity.Product;
+import com.backend.productprices.domain.entity.ProductPrice;
+import com.backend.productprices.infrastructure.persistence.model.ProductPricePO;
 
 import java.time.LocalDateTime;
 

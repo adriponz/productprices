@@ -1,6 +1,6 @@
 package com.backend.productprices.infrastructure.config;
 
-import com.backend.productprices.domain.productprice.exception.DomainException;
+import com.backend.productprices.domain.exception.DomainException;
 import com.backend.productprices.shared.message.KeyMessageSource;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

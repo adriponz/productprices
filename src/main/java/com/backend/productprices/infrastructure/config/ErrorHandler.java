@@ -1,7 +1,7 @@
 package com.backend.productprices.infrastructure.config;
 
-import com.backend.productprices.domain.productprice.exception.DomainException;
-import com.backend.productprices.domain.productprice.exception.ResourceNotFoundException;
+import com.backend.productprices.domain.exception.DomainException;
+import com.backend.productprices.domain.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
