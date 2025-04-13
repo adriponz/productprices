@@ -32,3 +32,15 @@ To access Swagger UI, visit:
 ```
 http://localhost:8080/api/swagger-ui/index.html
 ```
+
+## Run the acceptance tests
+
+There is a postman collection in the acceptance-tests folder with the tests requested for this project.
+It can be executed with the following command:
+```
+docker-compose up --build
+```
+
+You should see the results like this:
+
+![Mi Logo](images/acceptance-tests-feedback.JPG)

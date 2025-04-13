@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    container_name: backend-prices
+    ports:
+      - "8080:8080"
+    networks:
+      - testnet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  newman:
+    image: postman/newman
+    container_name: newman-tests
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - testnet
+    volumes:
+      - ./acceptance-tests:/etc/newman
+    command: >
+      run /etc/newman/product_prices.postman_collection.json
+      --delay-request 100
+      --timeout-request 5000
+      --bail
+      --env-var "baseUrl=http://backend:8080"
+
+networks:
+  testnet:
+    driver: bridge

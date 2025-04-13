@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "6d8045dd-8327-4c85-834b-aa9c6f3ae563",
+		"name": "Backend ProductPrices Acceptance Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5789830"
+	},
+	"item": [
+		{
+			"name": "Test 1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"expectedPriceListId\", 1);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-14T10:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-14T10:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"expectedPriceListId\", 2);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-14T16:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-14T16:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"expectedPriceListId\", 1);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-14T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-14T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"expectedPriceListId\", 3);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-15T10:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-15T10:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 5",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"expectedPriceListId\", 4);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-16T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-16T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"const expectedPriceListId = pm.variables.get(\"expectedPriceListId\");\r",
+					"\r",
+					"pm.test(\"Status code is 200\", function () {\r",
+					"    pm.response.to.have.status(200);\r",
+					"});\r",
+					"\r",
+					"pm.test(\"PriceListId is correct\", function () {\r",
+					"    const jsonData = pm.response.json();\r",
+					"    pm.expect(jsonData.priceListId).to.eql(expectedPriceListId);\r",
+					"});"
+				]
+			}
+		}
+	]
+}
