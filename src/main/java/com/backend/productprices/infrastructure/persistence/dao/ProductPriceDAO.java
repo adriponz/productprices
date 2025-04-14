@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.Optional;
+import java.util.List;
 
 @Mapper
 public interface ProductPriceDAO {
@@ -26,8 +26,6 @@ public interface ProductPriceDAO {
            product_id = #{criteria.productId}
            AND brand_id = #{criteria.brandId}
            AND #{criteria.date} BETWEEN start_date AND end_date
-       ORDER BY priority DESC
-       LIMIT 1
     """)
-    Optional<ProductPricePO> getByCriteria(@Param("criteria") ProductPriceSearchCriteria criteria);
+    List<ProductPricePO> getByCriteria(@Param("criteria") ProductPriceSearchCriteria criteria);
 }

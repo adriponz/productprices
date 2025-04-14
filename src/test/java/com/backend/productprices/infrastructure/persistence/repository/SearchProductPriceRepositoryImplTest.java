@@ -12,7 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 class SearchProductPriceRepositoryImplTest {
@@ -25,7 +26,7 @@ class SearchProductPriceRepositoryImplTest {
     void should_returnResult_when_getByCriteria() {
         final var productPricePO = ProductPriceUtils.getDefaultPersistence();
         final var criteria = new ProductPriceSearchCriteria(productPricePO.getProductId(), productPricePO.getBrandId(), LocalDateTime.now());
-        BDDMockito.given(productPriceDAO.getByCriteria(criteria)).willReturn(Optional.of(productPricePO));
+        BDDMockito.given(productPriceDAO.getByCriteria(criteria)).willReturn(List.of(productPricePO));
 
         final var result = searchProductPriceRepository.getByCriteria(criteria);
 
@@ -36,7 +37,7 @@ class SearchProductPriceRepositoryImplTest {
     void should_returnEmpty_when_getByCriteria_and_priceNotExists() {
         final var productPricePO = ProductPriceUtils.getDefaultPersistence();
         final var criteria = new ProductPriceSearchCriteria(productPricePO.getProductId(), productPricePO.getBrandId(), LocalDateTime.now());
-        BDDMockito.given(productPriceDAO.getByCriteria(criteria)).willReturn(Optional.empty());
+        BDDMockito.given(productPriceDAO.getByCriteria(criteria)).willReturn(Collections.emptyList());
 
         final var result = searchProductPriceRepository.getByCriteria(criteria);
 

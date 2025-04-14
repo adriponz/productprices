@@ -25,16 +25,24 @@ public class ProductPriceUtils {
     private static final LocalDateTime END_DATE = LocalDateTime.now().plusMonths(1);
 
     public static ProductPrice getDefaultDomain() {
-        final var product = new Product(PRODUCT_ID, BRAND_ID);
+        return getDefaultDomain(PRODUCT_ID, PRIORITY);
+    }
+
+    public static ProductPrice getDefaultDomain(Long productId, Integer priority) {
+        final var product = new Product(productId, BRAND_ID);
         final var price = new Price(PRICE_AMOUNT, PRICE_CURRENCY);
         final var period = new PricingPeriod(START_DATE, END_DATE);
-        final var pricing = new Pricing(PRICE_LIST_ID, period, PRIORITY);
+        final var pricing = new Pricing(PRICE_LIST_ID, period, priority);
         return new ProductPrice(product, price, pricing);
     }
 
     public static ProductPriceDTO getDefaultDTO() {
+        return getDefaultDTO(PRODUCT_ID);
+    }
+
+    public static ProductPriceDTO getDefaultDTO(Long productId) {
         final var productPriceDTO = new ProductPriceDTO();
-        productPriceDTO.setProductId(PRODUCT_ID);
+        productPriceDTO.setProductId(productId);
         productPriceDTO.setBrandId(BRAND_ID);
         productPriceDTO.setPriceListId(PRICE_LIST_ID);
         productPriceDTO.setPrice(new PriceDTO(PRICE_AMOUNT, PRICE_CURRENCY.getCode()));

@@ -1,10 +1,10 @@
 package com.backend.productprices.application.search;
 
 import com.backend.productprices.application.search.dto.ProductPriceSearchCriteriaDTO;
-import com.backend.productprices.shared.message.KeyMessageSource;
 import com.backend.productprices.domain.entity.ProductPriceSearchCriteria;
 import com.backend.productprices.domain.exception.ResourceNotFoundException;
 import com.backend.productprices.domain.repository.SearchProductPriceRepository;
+import com.backend.productprices.shared.message.KeyMessageSource;
 import com.backend.productprices.utils.ProductPriceUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 class SearchProductPriceImplTest {
@@ -31,7 +32,7 @@ class SearchProductPriceImplTest {
         criteriaDTO.setBrandId(1L);
         criteriaDTO.setDate(LocalDateTime.now());
         final var criteria = new ProductPriceSearchCriteria(criteriaDTO.getProductId(), criteriaDTO.getBrandId(), criteriaDTO.getDate());
-        BDDMockito.given(searchProductPriceRepository.getByCriteria(criteria)).willReturn(Optional.empty());
+        BDDMockito.given(searchProductPriceRepository.getByCriteria(criteria)).willReturn(Collections.emptyList());
 
         final var expectedThrow = Assertions.catchThrowable(() -> searchProductPrices.searchProductPrice(criteriaDTO));
 
@@ -41,16 +42,17 @@ class SearchProductPriceImplTest {
 
     @Test
     void should_returnResult_when_searchProductPrice() {
-        final var productPrice = ProductPriceUtils.getDefaultDomain();
+        final var productPrice = ProductPriceUtils.getDefaultDomain(100L, 1);
+        final var productPriceWithPriority = ProductPriceUtils.getDefaultDomain(100L, 2);
         final var criteriaDTO = new ProductPriceSearchCriteriaDTO();
         criteriaDTO.setProductId(productPrice.product().id());
         criteriaDTO.setBrandId(productPrice.product().brandId());
         criteriaDTO.setDate(LocalDateTime.now());
         final var criteria = new ProductPriceSearchCriteria(criteriaDTO.getProductId(), criteriaDTO.getBrandId(), criteriaDTO.getDate());
-        BDDMockito.given(searchProductPriceRepository.getByCriteria(criteria)).willReturn(Optional.of(productPrice));
+        BDDMockito.given(searchProductPriceRepository.getByCriteria(criteria)).willReturn(List.of(productPrice, productPriceWithPriority));
 
         final var result = searchProductPrices.searchProductPrice(criteriaDTO);
 
-        Assertions.assertThat(result).isEqualTo(ProductPriceUtils.getDefaultDTO());
+        Assertions.assertThat(result).isEqualTo(ProductPriceUtils.getDefaultDTO(productPriceWithPriority.product().id()));
     }
 }

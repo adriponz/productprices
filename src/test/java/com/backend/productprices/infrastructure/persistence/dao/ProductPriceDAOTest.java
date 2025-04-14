@@ -20,8 +20,11 @@ class ProductPriceDAOTest {
         final var result = productPriceDAO.getByCriteria(criteria);
 
         Assertions.assertThat(result).isNotEmpty();
-        Assertions.assertThat(result.get().getProductId()).isEqualTo(35455);
-        Assertions.assertThat(result.get().getBrandId()).isEqualTo(1L);
-        Assertions.assertThat(result.get().getPriceListId()).isEqualTo(2L);
+        result.forEach(productPricePO -> {
+            Assertions.assertThat(productPricePO.getProductId()).isEqualTo(35455);
+            Assertions.assertThat(productPricePO.getBrandId()).isEqualTo(1L);
+            Assertions.assertThat(productPricePO.getStartDate()).isBeforeOrEqualTo(criteria.date());
+            Assertions.assertThat(productPricePO.getEndDate()).isAfterOrEqualTo(criteria.date());
+        });
     }
 }

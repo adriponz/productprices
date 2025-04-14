@@ -6,7 +6,7 @@ import com.backend.productprices.domain.repository.SearchProductPriceRepository;
 import com.backend.productprices.infrastructure.persistence.dao.ProductPriceDAO;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.List;
 
 @Component
 final class SearchProductPriceRepositoryImpl implements SearchProductPriceRepository {
@@ -17,7 +17,7 @@ final class SearchProductPriceRepositoryImpl implements SearchProductPriceReposi
     }
 
     @Override
-    public Optional<ProductPrice> getByCriteria(ProductPriceSearchCriteria criteria) {
-        return productPriceDAO.getByCriteria(criteria).map(ProductPriceMapper::getFromPersistence);
+    public List<ProductPrice> getByCriteria(ProductPriceSearchCriteria criteria) {
+        return productPriceDAO.getByCriteria(criteria).stream().map(ProductPriceMapper::getFromPersistence).toList();
     }
 }
