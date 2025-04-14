@@ -1,9 +1,8 @@
-package com.backend.productprices.infrastructure.config;
+package com.backend.productprices.infrastructure.config.error;
 
 import com.backend.productprices.domain.exception.DomainException;
 import com.backend.productprices.domain.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,14 +17,14 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = {ResourceNotFoundException.class})
     protected ResponseEntity<Object> handleNotFoundError(RuntimeException ex, WebRequest request) {
-        log.error(ex.getMessage(), ex);
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        log.error(ex.getMessage());
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {DomainException.class})
     protected ResponseEntity<Object> handleDomainAccessError(RuntimeException ex, WebRequest request) {
-        log.error(ex.getMessage(), ex);
-        return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        log.error(ex.getMessage());
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

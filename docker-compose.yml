@@ -27,7 +27,7 @@ services:
     command: >
       run /etc/newman/product_prices.postman_collection.json
       --delay-request 100
-      --timeout-request 5000
+      --timeout-request 2000
       --bail
       --env-var "baseUrl=http://backend:8080"
 

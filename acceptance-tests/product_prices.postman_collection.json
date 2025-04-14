@@ -205,6 +205,104 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Test Error 404",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"errorRequest\", true);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Error code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price?date=2020-06-12T00:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-06-12T00:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Error 400",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"errorRequest\", true);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Error code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/brands/1/products/35455/price",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"brands",
+						"1",
+						"products",
+						"35455",
+						"price"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -226,14 +324,16 @@
 				"exec": [
 					"const expectedPriceListId = pm.variables.get(\"expectedPriceListId\");\r",
 					"\r",
-					"pm.test(\"Status code is 200\", function () {\r",
-					"    pm.response.to.have.status(200);\r",
-					"});\r",
+					"if (!pm.variables.get('errorRequest')) {\r",
+					"    pm.test(\"Status code is 200\", function () {\r",
+					"        pm.response.to.have.status(200);\r",
+					"    });\r",
 					"\r",
-					"pm.test(\"PriceListId is correct\", function () {\r",
-					"    const jsonData = pm.response.json();\r",
-					"    pm.expect(jsonData.priceListId).to.eql(expectedPriceListId);\r",
-					"});"
+					"    pm.test(\"PriceListId is correct\", function () {\r",
+					"        const jsonData = pm.response.json();\r",
+					"        pm.expect(jsonData.priceListId).to.eql(expectedPriceListId);\r",
+					"    });\r",
+					"}"
 				]
 			}
 		}
