@@ -32,6 +32,12 @@ To access Swagger UI, visit:
 ```
 http://localhost:8080/api/swagger-ui/index.html
 ```
+The endpoint provides an example of request parameters with a supported date format, although it also accepts different ones.
+
+You can see an execution example here:
+
+![Mi Logo](images/swagger-endpoint-request.JPG)
+
 
 ## Run the acceptance tests
 
